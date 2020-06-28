@@ -5,7 +5,8 @@ const path         = require('path');
 const https        = require('https');
 const http         = require('http');
 const app          = express();
-const salzburgInfo = require('./server/routes/salzbrgInfo');
+const salzburgInfoAPI = require('./server/routes/salzbrgInfoAPI');
+
 
 // set our port
 const port = process.env.PORT || '3000';
@@ -21,7 +22,7 @@ app.use(bodyparser.urlencoded({limit: "50mb", extended: true, parameterLimit: 50
 app.use(express.static(path.join(__dirname, 'dist/musicmap')));
 
 //app.use('/client', express.static('client'));
-app.use('/info', salzburgInfo);
+app.use('/info', salzburgInfoAPI);
 
 //Catch all other routes and return the index file
 app.get('*', (req, res) => {
@@ -32,3 +33,9 @@ app.get('*', (req, res) => {
 const server = http.createServer(app);
 
 server.listen(port, () => console.log(`API running on port: ${port}`));
+
+
+
+
+
+

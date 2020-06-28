@@ -1,13 +1,16 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <nav class="nav-bar">
-    <a routerLink="about" routerLinkActive="active">About</a>
+<mat-toolbar class="fixed-header">
+  <header>
+    <mat-card class="navHeader"> <!-- [ngClass]="{'mat-elevation-z5' : true, 'sticky' : isSticky}"-->
+      <button mat-button routerLink="dashboard">Dashboard</button>
+      <button mat-button routerLink="about">About</button>
+      <button mat-button routerLink="map">Map</button>
+      <button id="menu_button" mat-icon-button><mat-icon>menu</mat-icon></button>
+    </mat-card>
+  </header>
+</mat-toolbar>
 
-    <a routerLink="dashboard">Dashboard</a>
 
-    <a routerLink="map">map</a>
-  </nav>
+<section id="content">
   <router-outlet></router-outlet>
-</div>
+</section>
+

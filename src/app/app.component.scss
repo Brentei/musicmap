@@ -1,3 +1,30 @@
-.nav-bar a{
-  padding-left: 10px;
+#menu_button{
+float: right;
 }
+
+header {
+  height: 50px;
+  width: 100%;
+  background: #eee;
+  opacity: 1;
+}
+
+#content{
+  margin-top: 70px;
+  background: #eee;
+}
+mat-toolbar {
+  position: sticky;
+  top: 50px;
+  z-index: 3;
+}
+
+mat-toolbar {
+  top: 0;
+  position: fixed;
+  --default-height: 50px;
+}
+
+
+
+
