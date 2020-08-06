@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^9.1.6",
     "@angular/platform-browser-dynamic": "^9.1.6",
     "@angular/router": "^9.1.6",
+    "@types/jquery": "^3.5.0",
     "@types/ol": "^6.3.1",
     "angular-material": "^1.1.22",
     "body-parser": "^1.19.0",
@@ -29,13 +30,14 @@
     "http": "0.0.1-security",
     "ol": "^6.3.1",
     "ol-layerswitcher": "^3.6.0",
+    "ol-popup": "^4.0.0",
     "pg": "^8.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.5",
+    "@angular-devkit/build-angular": "^0.901.9",
     "@angular/cli": "^9.1.5",
     "@angular/compiler-cli": "^9.1.6",
     "@angular/language-service": "^9.1.6",

@@ -31,12 +31,12 @@ import { singleClick } from 'ol/events/condition';
 import { Attribution, ScaleLine } from 'ol/control';
 import Overlay from 'ol/Overlay';
 import { toStringHDMS } from 'ol/coordinate';
+import Popup from 'ol/Overlay';
+
 
 const features = [];
 
-var popup = new Overlay({
-  element: document.getElementById('popup'),
-});
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -50,11 +50,12 @@ export class MapComponent implements OnInit {
   map = null;
   markerSource = new Vector();
   marker = new Feature();
+  
   //vectorSourceGEOJson;
-  styleCache = {};
+  //styleCache = {};
   // clusterSource;
   vector;
-
+  
   //Inital View
   initView = new View({
     center: fromLonLat([13.06072, 47.78869]),
@@ -160,14 +161,17 @@ export class MapComponent implements OnInit {
     });
   }
 
+    
   public initalizeMap() {
     console.log('start init map');
-
+    this.markerSource.addFeature(this.marker);
+    var markername = this.markerSource.get('name');
     /**
      * Elements that make up the popup.
      */
+    
     var container = document.getElementById('popup');
-    var content = document.getElementById('popup-content');
+    var contentElement = document.getElementById('popup-content');
     var closer = document.getElementById('popup-closer');
     /**
      * Create an overlay to anchor the popup to the map.
@@ -216,12 +220,36 @@ export class MapComponent implements OnInit {
     /**
      * Add a click handler to the map to render the popup.
      */
-    this.map.on('singleclick', function (evt) {
-      var coordinate = evt.coordinate;
+    this.map.on('click',  (evt) => {
+      // Check if its a feature (marker) and display popup if true
+      var feature = this.map.forEachFeatureAtPixel(evt.pixel,
+        function(feature, layer) {
+          return feature;
+        });  
+        if (feature) {
+          var geometry = feature.getGeometry();
+          var coord = geometry.getCoordinates();
+          
+          var content = '<h3>' + markername + '</h3>';
+          content += '<h5>' + feature.get('name'); + '</h5>';
+          
+          contentElement.innerHTML = content;
+          popupOverlay.setPosition(coord);
+          
+          console.info(feature.getProperties());
+      }  
+      
+      /**
+       * var coordinate = evt.coordinate;
       var hdms = toStringHDMS(toLonLat(coordinate));
-
-      content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+      content.innerHTML = '<p>You clicked here:</p><code>' + hdms +
+      '</code>';
       popupOverlay.setPosition(coordinate);
+       * 
+       */
+      
+      
+      
     });
 
     this.map.addInteraction(this.select);
