@@ -5,7 +5,7 @@ import { AboutComponent} from './components/about/about.component';
 import { MapComponent} from './components/map/map.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'about', component: AboutComponent},
   { path: 'map', component: MapComponent}
